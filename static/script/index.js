@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // resultMessage.className = 'result-message';
         // resultMessage.textContent = `您的可接受最大仓位为 ${maxPosition.toFixed(2)} USDT。`;
         resultMessage.className = 'result-message';
-        resultMessage.innerHTML = `您的可接受最大仓位为<br>${maxPosition.toFixed(2)} USDT。`;
+        resultMessage.innerHTML = `您的可接受最大仓位（含杠杆）为<br>${maxPosition.toFixed(2)} USDT。`;
         
         // 清除之前的結果
         resultMessageContainer.textContent = '';

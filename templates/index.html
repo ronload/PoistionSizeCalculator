@@ -1,54 +1,32 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const calculateButton = document.querySelector('.calculate');
-    const totalFundsInput = document.getElementById('total-funds');
-    const acceptLossInput = document.getElementById('accept-loss');
-    const strategyLossInput = document.getElementById('strategy-loss');
-    const form = document.querySelector('.form');
-    const resultMessageContainer = document.querySelector('.result-message');
-
-    calculateButton.addEventListener('click', function () {
-        // 獲取用戶輸入的值
-        const totalFunds = parseFloat(totalFundsInput.value);
-        const acceptLoss = parseFloat(acceptLossInput.value);
-        const strategyLoss = parseFloat(strategyLossInput.value);
-
-        // 檢查是否accept_loss超過5%
-        if (acceptLoss > 5) {
-            const userConfirmation = confirm('警告：您的止損可能過高，有潛在的爆倉風險，仍要繼續嗎？');
-
-            if (!userConfirmation) {
-                // 用戶選擇取消，清除輸入
-                totalFundsInput.value = '';
-                acceptLossInput.value = '';
-                strategyLossInput.value = '';
-
-                // 清除之前的結果
-                resultMessageContainer.textContent = '';
-
-                return;
-            }
-        }
-
-        // 計算最大倉位
-        const maxPosition = (totalFunds * acceptLoss / 100) / (strategyLoss / 100);
-
-        // 創建新的結果元素
-        const resultMessage = document.createElement('div');
-        resultMessage.className = 'result-message';
-        resultMessage.innerHTML = `您的可接受最大仓位为<br>${maxPosition.toFixed(2)} USDT。`;
-        
-        // 清除之前的結果
-        resultMessageContainer.textContent = '';
-        
-        // 顯示新的結果
-        resultMessageContainer.appendChild(resultMessage);
-
-        // 設置form的高度為auto
-        form.style.height = 'auto';
-
-        // 等待一些時間後再改變透明度，以便觸發過渡效果
-        setTimeout(() => {
-            resultMessageContainer.style.opacity = '1';
-        }, 100);
-    });
-});
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <script src="../static/script/index.js"></script>
+</head>
+<body class="wrap">
+    <div class="form">
+        <div class="title">仓位大小计算机</div>
+        <div class="subtitle">Designed by BTCLION</div>
+        <div class="input-container ic1">
+            <input id="total-funds" class="input" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="total-funds" class="placeholder">请输入您的总资金（USDT）</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="accept-loss" class="input" type="text" placeholder=" " />
+            <div class="cut cut-long"></div>
+            <label for="accept-loss" class="placeholder">可接受止损百分比（建议低於5%）</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="strategy-loss" class="input" type="text" placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label for="strategy-loss" class="placeholder">策略止损百分比</>
+        </div>
+        <button type="text" class="calculate">计算</button>
+        <div class="result-message"></div>
+      </div>
+</body>
+</html>
