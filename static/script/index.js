@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 檢查是否accept_loss超過5%
         if (acceptLoss > 5) {
-            const userConfirmation = confirm('警告：您的止損可能過高，有潛在的爆倉風險，仍要繼續嗎？');
+            const userConfirmation = confirm('警告：您的止损可能过高，有潜在的爆仓风险，仍要继续吗？');
 
             if (!userConfirmation) {
                 // 用戶選擇取消，清除輸入
