@@ -13,6 +13,12 @@ body {
     height: auto;
     padding: 20px;
     width: 320px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.form.fadeIn {
+    opacity: 1;
 }
   
 .title {
@@ -130,10 +136,20 @@ body {
 
 
 .result-message {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
     margin-top: 30px;
     margin-bottom: 10px;
     color: #eee;
     font-size: 18px;
     font-family: sans-serif;
     text-align: center;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.result-message.show {
+    opacity: 1;
+    max-height: 100px; /* 設置一個足夠大的值，以確保內容能夠完全展開 */
+    transition: max-height 0.5s ease, opacity 0.5s ease;
 }
