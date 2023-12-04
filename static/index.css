@@ -68,7 +68,7 @@ body {
     position: absolute;
     top: -20px;
     transform: translateY(0);
-    transition: transform 200ms;
+    transition: transform 400ms;
     width: 116px;
 }
   
@@ -92,7 +92,7 @@ body {
     pointer-events: none;
     position: absolute;
     transform-origin: 0 50%;
-    transition: transform 200ms, color 200ms;
+    transition: transform 400ms, color 400ms;
     top: 20px;
 }
   
