@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 檢查是否accept_loss超過5%
         if (acceptLoss > 5) {
-            const userConfirmation = confirm('警告：您的止損可能過高，有潛在的爆倉風險，仍要繼續嗎？');
+            const userConfirmation = confirm('警告：您的止损可能过高，有潜在的爆仓风险，仍要继续吗？');
 
             if (!userConfirmation) {
                 // 用戶選擇取消，清除輸入
@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 創建新的結果元素
         const resultMessage = document.createElement('div');
+        // resultMessage.className = 'result-message';
+        // resultMessage.textContent = `您的可接受最大仓位为 ${maxPosition.toFixed(2)} USDT。`;
         resultMessage.className = 'result-message';
         resultMessage.innerHTML = `您的可接受最大仓位为<br>${maxPosition.toFixed(2)} USDT。`;
         
@@ -42,13 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // 顯示新的結果
         resultMessageContainer.appendChild(resultMessage);
-
-        // 設置form的高度為auto
-        form.style.height = 'auto';
-
-        // 等待一些時間後再改變透明度，以便觸發過渡效果
-        setTimeout(() => {
-            resultMessageContainer.style.opacity = '1';
-        }, 100);
+        
     });
 });
