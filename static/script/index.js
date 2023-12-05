@@ -21,11 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 '警告：您的止损可能过高，有潜在的爆仓风险，仍要继续吗？'
             );
             if (!userConfirmation) {
-                totalFundsInput.value = '';
-                acceptLossInput.value = '';
-                strategyLossInput.value = '';
                 resultMessageContainer.textContent = '';
-
                 return;
             }
         }

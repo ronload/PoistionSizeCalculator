@@ -14,12 +14,23 @@ body {
     padding: 20px;
     width: 320px;
     opacity: 0;
-    transition: opacity 1s ease;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .form.fadeIn {
-    opacity: 1;
+    opacity: 1 !important;
+    animation: none !important; /* 這將禁用淡入動畫，以確保元素保持可見狀態 */
 }
+
   
 .title {
     color: #eee;
