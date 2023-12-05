@@ -1,56 +1,46 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // initialize
     const form = document.querySelector('.form');
-    form.classList.add('fadeIn'); // 添加了 'fadeIn' 類別
+    form.classList.add('fadeIn');
     const calculateButton = document.querySelector('.calculate');
     const totalFundsInput = document.getElementById('total-funds');
     const acceptLossInput = document.getElementById('accept-loss');
     const strategyLossInput = document.getElementById('strategy-loss');
     const resultMessageContainer = document.querySelector('.result-message');
 
+    // calculate
     calculateButton.addEventListener('click', function () {
-        // 獲取用戶輸入的值
+        // value setting
         const totalFunds = parseFloat(totalFundsInput.value);
         const acceptLoss = parseFloat(acceptLossInput.value);
         const strategyLoss = parseFloat(strategyLossInput.value);
 
-        // 檢查是否accept_loss超過5%
+        // stop loss warning
         if (acceptLoss/totalFunds > 0.05) {
-            const userConfirmation = confirm('警告：您的止损可能过高，有潜在的爆仓风险，仍要继续吗？');
-
+            const userConfirmation = confirm(
+                '警告：您的止损可能过高，有潜在的爆仓风险，仍要继续吗？'
+            );
             if (!userConfirmation) {
-                // 用戶選擇取消，清除輸入
                 totalFundsInput.value = '';
                 acceptLossInput.value = '';
                 strategyLossInput.value = '';
-
-                // 清除之前的結果
                 resultMessageContainer.textContent = '';
 
                 return;
             }
         }
 
-        // 計算最大倉位
+        // acceptable max position
         const maxPosition = acceptLoss / (strategyLoss / 100);
 
-        // 創建新的結果元素
+        // result
         const resultMessage = document.createElement('div');
         resultMessage.className = 'result-message';
         resultMessage.innerHTML = `您的可接受最大仓位（含杠杆）为<br>${maxPosition.toFixed(2)} USDT。`;
-
-        // 添加 show 類以啟動過渡效果
         resultMessage.classList.add('show');
-
-        // 清除之前的結果
         resultMessageContainer.innerHTML = '';
-
-        // 顯示新的結果
         resultMessageContainer.appendChild(resultMessage);
-
-        // 添加 show 類以啟動過渡效果
         resultMessageContainer.classList.add('show');
-
-        // 設置 form 的高度為 auto
         form.style.height = 'auto';
     });
 });
